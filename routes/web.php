@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard_Controller;
 use App\Http\Controllers\SuperAdmin_DataUser_Controller;
 use App\Http\Controllers\Admin_Asn_Controller;
 use App\Http\Controllers\Admin_Struktur_Opd_Controller;
+use App\Http\Controllers\Jabatan_Opd_Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,5 +51,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/hapus_sub_bidang/{id}', [Admin_Struktur_Opd_Controller::class, 'hapus_sub_bidang'])->name('hapus_sub_bidang');
     Route::get('/hapus_bidang/{id}', [Admin_Struktur_Opd_Controller::class, 'hapus_bidang'])->name('hapus_bidang');
     Route::post('/post_tambah_bidang/{id}', [Admin_Struktur_Opd_Controller::class, 'tambah_bidang']);
+
+    // jabatan opd
+    Route::get('/daftar_jabatan', [Jabatan_Opd_Controller::class, 'daftar_jabatan'])->name('daftar_jabatan');
+    Route::post('/post_opd_jabatan', [Jabatan_Opd_Controller::class, 'post_opd_jabatan']);
 });
 
