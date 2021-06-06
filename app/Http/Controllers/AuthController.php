@@ -1,10 +1,11 @@
-<?php
+    <?php
 
 namespace App\Http\Controllers;
 use Auth;
 
 use Illuminate\Http\Request;
 use Validator;
+use App\Models\User;
 
 class AuthController extends Controller
 {
