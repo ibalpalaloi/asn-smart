@@ -44,6 +44,15 @@ class Admin_Struktur_Opd_Controller extends Controller
         return back();
     }
 
+    public function select_bidang(Request $request){
+        $sub_bidang = Sub_bidang::where('bidang_id', $request->id_bidang)->get();
+        $option = "<option value='0'>Tanpa Sub Bidang</option>";
+        foreach ($sub_bidang as $row) {
+            $option .= "<option value='$row->id'>$row->nama_sub_bidang</option>";
+        }
+        echo $option;
+    }
+
     public function hapus_bidang($id){
         Bidang::find($id)->delete();
         return back();

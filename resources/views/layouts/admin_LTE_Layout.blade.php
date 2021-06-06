@@ -279,7 +279,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/daftar_jabatan" class="nav-link">
+                <a href="/daftar_jabatan_opd" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Daftar jabatan OPD</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/jabatan" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Daftar jabatan</p>
                 </a>
