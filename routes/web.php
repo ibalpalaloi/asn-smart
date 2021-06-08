@@ -60,13 +60,21 @@ Route::group(['middleware' => 'auth'], function(){
 
     // jabatan opd
     Route::get('/daftar_jabatan_opd', [Jabatan_Opd_Controller::class, 'daftar_jabatan_opd'])->name('daftar_jabatan_opd');
+    Route::get('/hapus_opd_jabatan/{id}', [Jabatan_Opd_Controller::class, 'hapus_opd_jabatan']);
+
     // jabatan tugas
     Route::post('/jabatan/{id}/tugas/store', [Jabatan_Tugas_Controller::class, 'store']);
     Route::get('/jabatan/{id}/tugas', [Jabatan_Tugas_Controller::class, 'index']);
+    Route::get('/get_uraian/{id}', [Jabatan_Tugas_Controller::class, 'get_uraian'])->name('get_uraian_tugas');
+    Route::post('/ubah_uraian', [Jabatan_Tugas_Controller::class, 'ubah_uraian'])->name('ubah_uraian');
+    Route::get('/hapus_uraian/{id}', [Jabatan_Tugas_Controller::class, 'hapus_uraian'])->name('hapus_uraian');
 
     // jabatan 
     Route::post('/jabatan/store', [JabatanController::class, 'store']);
     Route::get('/jabatan', [JabatanController::class, 'index']);
     Route::post('/post_opd_jabatan', [Jabatan_Opd_Controller::class, 'post_opd_jabatan']);
+    Route::get('/jabatan/{id}', [JabatanController::class, 'get_jabatan']);
+    Route::post('/ubah_jabatan', [JabatanController::class, 'ubah_jabatan'])->name('ubah_jabatan');
+    Route::get('/hapus_jabatan/{id}', [JabatanController::class, 'hapus_jabatan'])->name('hapus_jabatan');
 });
 

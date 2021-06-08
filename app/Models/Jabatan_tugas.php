@@ -9,4 +9,9 @@ class Jabatan_tugas extends Model
 {
     use HasFactory;
     protected $table = "jabatan_tugas";
+    public $incrementing = false;
+
+    public function jabatan(){
+        return $this->belongsTo(Jabatan::class, 'id_jabatan');
+    }
 }

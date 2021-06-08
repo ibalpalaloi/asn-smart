@@ -22,4 +22,8 @@ class Opd_jabatan extends Model
     public function sub_bidang(){
         return $this->belongsTo(Sub_bidang::class);
     }
+
+    public function jabatan(){
+        return $this->belongsTo(Jabatan::class);
+    }
 }

@@ -32,4 +32,21 @@ class Jabatan_Tugas_Controller extends Controller
 		return $kode."-".$current_date;
 	}
 
+	public function get_uraian($id){
+		$jabatan_tugas = Jabatan_tugas::find($id);
+		return response()->json(array('jabatan_tugas'=> $jabatan_tugas));
+	}
+
+	public function ubah_uraian(Request $request){
+		$uraian = Jabatan_tugas::find($request->id_uraian);
+		$uraian->uraian = $request->uraian;
+		$uraian->save();
+		return back();
+	}
+
+	public function hapus_uraian($id){
+		Jabatan_tugas::find($id)->delete();
+		return back();
+	}
+
 }

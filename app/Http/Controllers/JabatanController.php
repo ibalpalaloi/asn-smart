@@ -33,5 +33,23 @@ class JabatanController extends Controller
 		return $kode."-".$current_date;
 	}
 
+	public function get_jabatan($id){
+		$jabatan = Jabatan::where('id', $id)->first();
+		return response()->json(array('jabatan'=> $jabatan));
+	}
+
+	public function ubah_jabatan(Request $request){
+		$jabatan = Jabatan::find($request->id_jabatan);
+		$jabatan->nama = $request->nama;
+		$jabatan->ikhtisar =$request->ikhtisar;
+		$jabatan->save();
+
+		return back();
+	}
+
+	public function hapus_jabatan($id){
+		Jabatan::find($id)->delete();
+		return back();
+	}
 
 }

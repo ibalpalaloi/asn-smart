@@ -23,7 +23,8 @@
       <form action="/post_opd_jabatan" method="post">
         <div class="modal-body">
           {{ csrf_field() }}
-          <input type="text" id="id_bidang" name="id_bidang" hidden >
+          <input type="text" id="id_bidang" name="id_bidang" hidden>
+          <input type="text" id="jenis" name="jenis" hidden>
           <div class="form-group">
             <label for="exampleFormControlSelect1">Nama Jabatan</label>
             <select name="jabatan" class="form-control" id="exampleFormControlSelect1">
@@ -32,24 +33,7 @@
               <option value="{{$data->id}}">{{$data->nama}}</option>
               @endforeach
             </select>
-          </div>           
-
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">Nama Bidang</label>
-            <select name="bidang" id='bidang' class="form-control" onchange="select_bidang()" id="exampleFormControlSelect1">
-              <option value="0">Pilih Bidang</option>
-              @foreach ($data_bidang as $data)
-              <option value="{{$data['id']}}">{{$data['nama_bidang']}}</option>
-              @endforeach
-            </select>
-          </div>           
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">Nama Sub Bidang</label>
-            <select name="sub_bidang" id="sub_bidang" class="form-control" id="exampleFormControlSelect1">
-              <option value="0">Pilih Sub Bidang</option>
-            </select>
-          </div>           
-
+          </div>  
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -66,39 +50,44 @@
 @section('content')
 <div class="card">
   <div class="card-header">
-    <h3 class="card-title">Data Admin </h3>
+    <h3 class="card-title">Daftar Jabatan</h3>
 
     <div class="card-tools">
       <div class="input-group input-group-sm" style="width: 150px;">
-        <button type="button" data-toggle="modal" data-target="#modal_tambah_jabatan">Tambah Jabatan</button>
       </div>
     </div>
   </div>
   <!-- /.card-header -->
   <div class="card-body">
-    <table id="example1" class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Nama Jabatan</th>
-          <th>Bidang</th>
-          <th>Sub Bidang</th>
-        </tr>
-      </thead>
-      <tbody>
-        @php
-        $no = 1;
-        @endphp
-        @foreach ($data_jabatan as $data)
-        <tr>
-          <td>{{$no++}}</td>
-          <td>{{$data['nama_jabatan']}}</td>
-          <td>{{$data['nama_bidang']}}</td>
-          <td>{{$data['nama_sub_bidang']}}</td>
-        </tr>
+    <div class="list-group">
+      @foreach ($data_bidang as $data)
+        <li class="list-group-item list-group-item-action list-group-item-secondary d-flex justify-content-between align-items-center">
+          {{$data['nama_bidang']}}
+          <span onclick="modal_tambah_jabatan('bidang', '{{$data['id']}}')" class="badge badge-primary badge-pill">Tambah</span>
+        </li>
+        <ul class="list-group list-group-flush"b style="padding-left: 40px">
+        @foreach ($data['jabatan'] as $jabatan)
+          <li class="list-group-item">{{$jabatan->jabatan->nama}}
+            <span onclick="hapus_jabatan('{{$jabatan->id}}')" class="badge badge-danger badge-pill">Hapus</span>
+          </li>
         @endforeach
-      </tbody>
-    </table>
+        </ul>
+      @endforeach
+      @foreach ($data_sub_bidang as $sub_bidang)
+        <li class="list-group-item list-group-item-action list-group-item-secondary d-flex justify-content-between align-items-center">
+          {{$sub_bidang['nama_sub_bidang']}}
+          <span onclick="modal_tambah_jabatan('sub_bidang', '{{$sub_bidang['id']}}')" class="badge badge-primary badge-pill">Tambah</span>
+        </li>
+        <ul class="list-group list-group-flush"b style="padding-left: 40px">
+          @foreach ($sub_bidang['jabatan'] as $jabatan)
+            <li class="list-group-item">
+              {{$jabatan->jabatan->nama}}
+              <span onclick="hapus_jabatan('{{$jabatan->id}}')" class="badge badge-danger badge-pill">Hapus</span>
+            </li>
+          @endforeach
+        </ul>
+      @endforeach
+    </div>
   </div>
 </div>
 @endsection
@@ -111,16 +100,14 @@
     }
   });
 
-  function select_bidang(){
-    var id_bidang = $("#bidang").val();
-    $.ajax({
-      type:'POST',
-      url:"/bidang/select_bidang",
-      data:{id_bidang:id_bidang},
-      success:function(response){
-        $("#sub_bidang").html(response);
-      },
-    });      
+  function modal_tambah_jabatan(jenis, id){
+    $('#id_bidang').val(id);
+    $('#jenis').val(jenis);
+    $('#modal_tambah_jabatan').modal('show');
+  }
+
+  function hapus_jabatan(id){
+    location.href = "/hapus_opd_jabatan/"+id;
   }
 </script>
 
