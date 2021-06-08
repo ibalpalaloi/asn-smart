@@ -43,9 +43,9 @@
 
 {{-- end modal tambah bidang --}}
 
-{{-- modal sub bagian --}}
+{{-- modal sub bidang --}}
 
-<div class="modal fade" id="modal_tambah_sub_bagian" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_tambah_sub_bidang" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -57,7 +57,7 @@
         <form action="/post_tambah_sub_bidang" method="post">
           <div class="modal-body">
             {{ csrf_field() }}
-            <input type="text" id="id_bidang" name="id_bidang" hidden >
+            <input type="text" id="id_bidang_tambah_sub_bidang" name="id_bidang" hidden >
             <div class="form-group row">
               <label for="inputEmail3" class="col-sm-2 col-form-label">Nama</label>
               <div class="col-sm-10">
@@ -248,8 +248,8 @@
     }
 
     function modal_tambah_sub_bagian(id_bidang, nama_bidang){
-        $('#id_bidang').val(id_bidang);
-        $('#modal_tambah_sub_bagian').modal('show');
+        $('#id_bidang_tambah_sub_bidang').val(id_bidang);
+        $('#modal_tambah_sub_bidang').modal('show');
     }
 </script>
 @endsection

@@ -11,6 +11,6 @@ class Sub_bidang extends Model
     protected $table = "sub_bidang";
 
     public function bidang(){
-        return $this->belongTo(Bidang::class);
+        return $this->belongsTo(Bidang::class);
     }
 }
