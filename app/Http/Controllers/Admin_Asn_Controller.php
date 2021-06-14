@@ -25,5 +25,6 @@ class Admin_Asn_Controller extends Controller
     }
 
     public function tambah_asn(){
+        return view('asn.tambah_asn');
     }
 }

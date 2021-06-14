@@ -25,12 +25,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'v8.5.18',
-    'version' => '8.5.18.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'b49c8d1accb6491bfd6e56c3ee7fe4082b969ca9',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -455,12 +455,12 @@ private static $installed = array (
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => 'v8.5.18',
-      'version' => '8.5.18.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'b49c8d1accb6491bfd6e56c3ee7fe4082b969ca9',
     ),
     'laravel/sail' => 
     array (
@@ -470,6 +470,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'd1f703d73f782af5427697cdc5023395cd341963',
+    ),
+    'laravel/sanctum' => 
+    array (
+      'pretty_version' => 'v2.11.1',
+      'version' => '2.11.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '5de9d0ced8ae50dacb00c16077115f32e94d13f2',
     ),
     'laravel/tinker' => 
     array (
@@ -775,8 +784,8 @@ private static $installed = array (
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 

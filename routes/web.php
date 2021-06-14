@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/hapus_bidang/{id}', [Admin_Struktur_Opd_Controller::class, 'hapus_bidang'])->name('hapus_bidang');
     Route::post('/post_tambah_bidang/{id}', [Admin_Struktur_Opd_Controller::class, 'tambah_bidang']);
 
+    // Route::get('/')
+
     // jabatan opd
     Route::get('/daftar_jabatan_opd', [Jabatan_Opd_Controller::class, 'daftar_jabatan_opd'])->name('daftar_jabatan_opd');
     Route::get('/hapus_opd_jabatan/{id}', [Jabatan_Opd_Controller::class, 'hapus_opd_jabatan']);
