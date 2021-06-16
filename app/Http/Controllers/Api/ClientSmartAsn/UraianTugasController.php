@@ -12,7 +12,7 @@ class UraianTugasController extends Controller
     //
     public function index(Request $request){
 		$user = $request->user();
-		$asn = DB::table('opd_jabatan')->select('opd_jabatan.id_jabatan', 'asn.id as id_asn')->join('jabatan_asn', 'jabatan_asn.id_jabatan', '=', 'opd_jabatan.id')->join('asn', 'asn.id', '=', 'jabatan_asn.id_asn')->where('nip', $user->nip)->first();
+		$asn = DB::table('opd_jabatan')->select('opd_jabatan.id_jabatan', 'asn.id as id_asn')->join('jabatan_asn', 'jabatan_asn.id_jabatan', '=', 'opd_jabatan.id')->join('asn', 'asn.biodata_asn_id', '=', 'jabatan_asn.id_asn')->where('nip', $user->nip)->first();
 		$jabatan_tugas = DB::table('jabatan_tugas')->select('id','uraian')->where('id_jabatan', $asn->id_jabatan)->get();
 		$bulan_now = intval(date('m'));
 		$tahun_now = date('Y');
@@ -23,6 +23,7 @@ class UraianTugasController extends Controller
 		return response()->json([
 			'message' => "Data berhasil",
 			'status' => 200,
+			// 'asn' => $asn
 			'jabatan_tugas' => $jabatan_tugas,
 			'uraian_tugas'=>$uraian_tugas,
 			'tanggal' => $tanggal
@@ -31,7 +32,7 @@ class UraianTugasController extends Controller
 
 	public function store(Request $request){
 		$user = $request->user();
-		$asn = DB::table('opd_jabatan')->select('opd_jabatan.id_jabatan', 'asn.id as id_asn')->join('jabatan_asn', 'jabatan_asn.id_jabatan', '=', 'opd_jabatan.id')->join('asn', 'asn.id', '=', 'jabatan_asn.id_asn')->where('nip', $user->nip)->first();
+		$asn = DB::table('opd_jabatan')->select('opd_jabatan.id_jabatan', 'asn.id as id_asn')->join('jabatan_asn', 'jabatan_asn.id_jabatan', '=', 'opd_jabatan.id')->join('asn', 'asn.biodata_asn_id', '=', 'jabatan_asn.id_asn')->where('nip', $user->nip)->first();
     	$db = new Uraian_tugas;
     	$db->id = $this->autocode('URT');
     	$db->tanggal = $request->tanggal;

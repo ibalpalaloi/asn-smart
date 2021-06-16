@@ -8,6 +8,9 @@ use App\Http\Controllers\Api\ClientSmartAsn\DaerahController;
 use App\Http\Controllers\Api\ClientSmartAsn\JabatanAsnController;
 use App\Http\Controllers\Api\ClientSmartAsn\UraianTugasController;
 use App\Http\Controllers\Api\ClientSmartAsn\AbsenController;
+use App\Http\Controllers\Api\ClientSmartAsn\OPDController;
+use App\Http\Controllers\Api\ClientSmartAsn\SuratTugasController;
+use App\Http\Controllers\Api\ClientSmartAsn\AsnController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,9 +25,18 @@ use App\Http\Controllers\Api\ClientSmartAsn\AbsenController;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::get('/data-opd', [OPDController::class, 'data_opd']);
+
+Route::post('/surat-tugas/store', [SuratTugasController::class, 'store']);
+Route::get('/surat-tugas', [SuratTugasController::class, 'index']);
+	
+
 Route::group(['middleware' => 'auth:sanctum'], function(){
 	// Absen
-	Route::get('/absen/jadwal-absen', [AbsenController::class, 'jadwal_absen']);
+	Route::post('/generate_absen', [AbsenController::class, 'generate_absen']);
+	Route::post('/absen/check-absen', [AbsenController::class, 'check_absen']);
+	Route::post('/absen/verifikasi-kode', [AbsenController::class, 'verifikasi_kode']);
+	Route::get('/absen', [AbsenController::class, 'jadwal_absen']);
 	// Uraian Tugas
 	Route::post('/uraian-tugas/store', [UraianTugasController::class, 'store']);
 	Route::get('/uraian-tugas/{bulan}/{tahun}', [UraianTugasController::class, 'filter_tahun']);
@@ -44,4 +56,5 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 	Route::get('/logout', [AuthController::class, 'logout']);
 });
 
+Route::post('/asn/daftar', [AsnController::class, 'daftar']);
 Route::post('/post_login', [AuthController::class, 'post_login']);
