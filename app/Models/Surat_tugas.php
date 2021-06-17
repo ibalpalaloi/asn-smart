@@ -10,4 +10,8 @@ class Surat_tugas extends Model
     use HasFactory;
     protected $table = "surat_tugas";
 
+    public function tugas(){
+        return $this->hasMany(Tugas::class);
+    }
+
 }

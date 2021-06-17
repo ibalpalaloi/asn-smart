@@ -29,6 +29,10 @@ Route::get('/data-opd', [OPDController::class, 'data_opd']);
 
 Route::post('/surat-tugas/store', [SuratTugasController::class, 'store']);
 Route::get('/surat-tugas', [SuratTugasController::class, 'index']);
+Route::get('/tugas_surat_tugas', [SuratTugasController::class, 'tugas_surat_tugas']);
+Route::get('/tambah_tugas_surat_tugas', [SuratTugasController::class, 'tambah_tugas_surat_tugas']);
+Route::get('/hapus_tugas_surat_tugas', [SuratTugasController::class, 'hapus_tugas_surat_tugas']);
+Route::get('/ubah_tugas_surat_tugas', [SuratTugasController::class, 'ubah_tugas_surat_tugas']);
 	
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
