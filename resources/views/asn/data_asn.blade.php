@@ -15,10 +15,10 @@
     <div class="modal-content">
         <br><br>
         <div class="row">
-            <div class="col">
+            <div class="col-8 col-sm-6">
                 
             </div>
-            <div class="col">
+            <div class="col-8 col-sm-6">
 
             </div>
         </div>
@@ -57,12 +57,14 @@
               $no = 1;
           @endphp
           @foreach ($data_asn as $data)
+          <tr>
               <td>{{$no++}}</td>
               <td>{{$data['nama']}}</td>
               <td>{{$data['nip']}}</td>
               <td>{{$data['jenis_kelamin']}}</td>
               <td>{{$data['tgl_lahir']}}</td>
               <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Lihat</button></td>
+            </tr>
           @endforeach
         </tbody>
       </table>
