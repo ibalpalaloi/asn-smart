@@ -9,5 +9,9 @@ class Tugas extends Model
 {
     use HasFactory;
     protected $table = "tugas";
+    public $incrementing = false;
 
+    public function surat_tugas(){
+        return $this->belongsTo(Surat_tugas::class);
+    }
 }

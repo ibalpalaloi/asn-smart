@@ -18,7 +18,7 @@ class AuthController extends Controller
         if(Auth::attempt(['nip' => $request->nip, 'password' => $request->password])){
             return redirect()->route('dashboard');
         }else{
-            dd('gagal');
+            return back();
         }
     }
 

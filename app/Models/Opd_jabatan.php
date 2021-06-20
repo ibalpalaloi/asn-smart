@@ -24,6 +24,6 @@ class Opd_jabatan extends Model
     }
 
     public function jabatan(){
-        return $this->belongsTo(Jabatan::class);
+        return $this->belongsTo(Jabatan::class, 'id_jabatan');
     }
 }

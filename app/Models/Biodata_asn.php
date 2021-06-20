@@ -9,6 +9,7 @@ class Biodata_asn extends Model
 {
     use HasFactory;
     protected $table = 'biodata_asn';
+    public $incrementing = false;
 
     public function asn(){
         return $this->hasOne(Biodata_asn::class);

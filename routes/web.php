@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin_Struktur_Opd_Controller;
 use App\Http\Controllers\Jabatan_Opd_Controller;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\Jabatan_Tugas_Controller;
+use App\Http\Controllers\GetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,7 @@ Route::group(['middleware' => 'auth'], function(){
     // data asn
     Route::get('data_asn', [Admin_Asn_Controller::class, 'data_asn'])->name('data_asn');
     Route::get('tambah_asn', [Admin_Asn_Controller::class, 'tambah_asn'])->name('tambah_asn');
+    Route::post('/post_tambah_asn', [Admin_Asn_Controller::class, 'post_tambah_asn'])->name('post_tambah_asn');
 
     // Struktur
     Route::post('bidang/select_bidang', [Admin_Struktur_Opd_Controller::class, 'select_bidang']);
@@ -76,5 +78,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/jabatan/{id}', [JabatanController::class, 'get_jabatan']);
     Route::post('/ubah_jabatan', [JabatanController::class, 'ubah_jabatan'])->name('ubah_jabatan');
     Route::get('/hapus_jabatan/{id}', [JabatanController::class, 'hapus_jabatan'])->name('hapus_jabatan');
+
+    // Get
+    Route::get('/get_sub_bidang/{id}', [GetController::class, 'get_sub_bidang'])->name('get_sub_bidang');
+    Route::get('/get_jabatan_sub_bidang/{id}', [GetController::class, 'get_jabatan_sub_bidang'])->name('get_jabatan_sub_bidang');
+    Route::get('/get_detail_asn/{id}', [GetController::class, 'get_detail_asn'])->name('get_detail_asn');
 });
 
