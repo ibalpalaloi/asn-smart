@@ -14,4 +14,8 @@ class Asn extends Model
     public function biodata_asn(){
         return $this->belongsTo(Biodata_asn::class);
     }
+
+    public function jabatan_asn(){
+        return $this->hasOne(Jabatan_asn::class, 'id_asn');
+    }
 }

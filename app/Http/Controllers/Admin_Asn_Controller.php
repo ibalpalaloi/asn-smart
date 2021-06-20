@@ -24,11 +24,14 @@ class Admin_Asn_Controller extends Controller
         $data_asn = array();
         $i = 0;
         foreach($asn as $data){
+            $data_asn[$i]['id'] = $data->id;
             $data_asn[$i]['id_asn'] = $data->id;
             $data_asn[$i]['nama'] = $data->biodata_asn->nama;
             $data_asn[$i]['nip'] = $data->nip;
             $data_asn[$i]['jenis_kelamin'] = $data->biodata_asn->jenis_kelamin;
             $data_asn[$i]['tgl_lahir'] = $data->biodata_asn->tgl_lahir;
+            $data_asn[$i]['bidang'] = $asn[0]->jabatan_asn->opd_jabatan->bidang->nama_bidang;
+            $data_asn[$i]['sub_bidang'] = $asn[0]->jabatan_asn->opd_jabatan->sub_bidang->nama_sub_bidang;
             $i++;
         }
         return view('asn.data_asn', compact('data_asn'));

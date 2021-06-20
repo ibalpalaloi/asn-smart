@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sub_bidang;
 use App\Models\Opd_jabatan;
+use App\Models\Asn;
 
 class GetController extends Controller
 {
@@ -30,5 +31,10 @@ class GetController extends Controller
         }
 
         return response()->json(['data_jabatan'=>$data_jabatan]);
+    }
+
+    public function get_detail_asn($id){
+        $asn = Asn::find($id);
+        return response()->json(['asn'=>$asn]);
     }
 }

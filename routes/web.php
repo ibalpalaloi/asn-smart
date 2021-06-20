@@ -82,5 +82,6 @@ Route::group(['middleware' => 'auth'], function(){
     // Get
     Route::get('/get_sub_bidang/{id}', [GetController::class, 'get_sub_bidang'])->name('get_sub_bidang');
     Route::get('/get_jabatan_sub_bidang/{id}', [GetController::class, 'get_jabatan_sub_bidang'])->name('get_jabatan_sub_bidang');
+    Route::get('/get_detail_asn/{id}', [GetController::class, 'get_detail_asn'])->name('get_detail_asn');
 });
 
