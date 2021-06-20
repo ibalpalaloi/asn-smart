@@ -12,7 +12,7 @@ class UraianTugasController extends Controller
     //
     public function index(Request $request){
 		$user = $request->user();
-		$asn = DB::table('opd_jabatan')->select('opd_jabatan.id_jabatan', 'asn.id as id_asn')->join('jabatan_asn', 'jabatan_asn.id_jabatan', '=', 'opd_jabatan.id')->join('asn', 'asn.biodata_asn_id', '=', 'jabatan_asn.id_asn')->where('nip', $user->nip)->first();
+		$asn = DB::table('opd_jabatan')->select('opd_jabatan.id_jabatan', 'asn.id as id_asn')->join('jabatan_asn', 'jabatan_asn.id_jabatan', '=', 'opd_jabatan.id')->join('asn', 'asn.id', '=', 'jabatan_asn.id_asn')->where('nip', $user->nip)->first();
 		$jabatan_tugas = DB::table('jabatan_tugas')->select('id','uraian')->where('id_jabatan', $asn->id_jabatan)->get();
 		$bulan_now = intval(date('m'));
 		$tahun_now = date('Y');
@@ -32,7 +32,7 @@ class UraianTugasController extends Controller
 
 	public function store(Request $request){
 		$user = $request->user();
-		$asn = DB::table('opd_jabatan')->select('opd_jabatan.id_jabatan', 'asn.id as id_asn')->join('jabatan_asn', 'jabatan_asn.id_jabatan', '=', 'opd_jabatan.id')->join('asn', 'asn.biodata_asn_id', '=', 'jabatan_asn.id_asn')->where('nip', $user->nip)->first();
+		$asn = DB::table('opd_jabatan')->select('opd_jabatan.id_jabatan', 'asn.id as id_asn')->join('jabatan_asn', 'jabatan_asn.id_jabatan', '=', 'opd_jabatan.id')->join('asn', 'asn.id', '=', 'jabatan_asn.id_asn')->where('nip', $user->nip)->first();
     	$db = new Uraian_tugas;
     	$db->id = $this->autocode('URT');
     	$db->tanggal = $request->tanggal;
@@ -47,6 +47,31 @@ class UraianTugasController extends Controller
 			'status' => 200,
 		],200);
 	}
+
+	public function update(Request $request){
+		$user = $request->user();
+		$asn = DB::table('opd_jabatan')->select('opd_jabatan.id_jabatan', 'asn.id as id_asn')->join('jabatan_asn', 'jabatan_asn.id_jabatan', '=', 'opd_jabatan.id')->join('asn', 'asn.id', '=', 'jabatan_asn.id_asn')->where('nip', $user->nip)->first();
+    	$db = Uraian_tugas::where('id', $request->id)->first();
+    	$db->tanggal = $request->tanggal;
+    	$db->waktu_mulai = $request->waktu_mulai;
+    	$db->waktu_akhir = $request->waktu_akhir;
+    	$db->kategori_tugas = $request->kategori_tugas; 
+    	$db->uraian_tugas = $request->uraian_tugas;
+    	$db->save();
+		return response()->json([
+			'message' => "Data berhasil",
+			'status' => 200,
+		],200);
+	}
+
+	public function delete(Request $request){
+		Uraian_tugas::find($request->id)->delete();
+		return response()->json([
+			'message' => "Data berhasil dihapus",
+			'status' => 200,
+		],200);
+	}
+
 
 	public function detail($tanggal, Request $request){
 		$user = $request->user();

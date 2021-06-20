@@ -29,23 +29,33 @@ Route::get('/data-opd', [OPDController::class, 'data_opd']);
 
 Route::post('/surat-tugas/store', [SuratTugasController::class, 'store']);
 Route::get('/surat-tugas', [SuratTugasController::class, 'index']);
-	
+
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
+	// middleware cek biodata
+	Route::group(['middleware' => "cekbiodata"], function(){
+		// jabatan
+		Route::post('/jabatan/store/', [JabatanAsnController::class, 'store']);
+		// Uraian Tugas
+		Route::post('/uraian-tugas/delete', [UraianTugasController::class, 'delete']);
+		Route::post('/uraian-tugas/update', [UraianTugasController::class, 'update']);
+		Route::post('/uraian-tugas/store', [UraianTugasController::class, 'store']);
+		Route::get('/uraian-tugas/{bulan}/{tahun}', [UraianTugasController::class, 'filter_tahun']);
+		Route::get('/uraian-tugas/{tanggal}', [UraianTugasController::class, 'detail']);
+		Route::get('/uraian-tugas', [UraianTugasController::class, 'index']);
+		// Absen
+		Route::get('/absen', [AbsenController::class, 'jadwal_absen']);
+	});
+
+
 	// Absen
 	Route::post('/generate_absen', [AbsenController::class, 'generate_absen']);
+	Route::post('/absen/update-foto', [AbsenController::class, 'update_foto']);
 	Route::post('/absen/check-absen', [AbsenController::class, 'check_absen']);
 	Route::post('/absen/verifikasi-kode', [AbsenController::class, 'verifikasi_kode']);
-	Route::get('/absen', [AbsenController::class, 'jadwal_absen']);
-	// Uraian Tugas
-	Route::post('/uraian-tugas/store', [UraianTugasController::class, 'store']);
-	Route::get('/uraian-tugas/{bulan}/{tahun}', [UraianTugasController::class, 'filter_tahun']);
-	Route::get('/uraian-tugas/{tanggal}', [UraianTugasController::class, 'detail']);
-	Route::get('/uraian-tugas', [UraianTugasController::class, 'index']);
-
+	
 	//Jabatan
 	Route::post('/jabatan/update/', [JabatanAsnController::class, 'update']);
-	Route::post('/jabatan/store/', [JabatanAsnController::class, 'store']);
 	Route::post('/jabatan/select_sub_bidang/', [JabatanAsnController::class, 'select_sub_bidang']);
 	Route::post('/jabatan/select_bidang/', [JabatanAsnController::class, 'select_bidang']);
 

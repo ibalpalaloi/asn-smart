@@ -19,7 +19,7 @@ class AsnController extends Controller
     //
 	public function daftar(Request $request){
 		$db = new User;
-		$db->id = $this->autocode('USR');
+		// $db->id = $this->autocode('USR');
 		$db->name = $request->nama;
 		$db->nip = $request->nip;
 		$db->roles = 'asn';

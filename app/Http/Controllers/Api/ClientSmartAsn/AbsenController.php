@@ -50,7 +50,7 @@ class AbsenController extends Controller
 				$jadwal_absen["Pagi"]["jam_akhir"] = $row->jam_akhir;
 				$jadwal_absen["Pagi"]["level"] = $row->level;
 				$jadwal_absen["Pagi"]["status"] = $row->status;
-				$jadwal_absen["Pagi"]["keterangan"] = "";
+				$jadwal_absen["Pagi"]["keterangan"] = $row->status." ".$row->level;
 				$jadwal_absen["Pagi"]["is_absen"] = "Ya";
 			}
 		}
@@ -147,9 +147,9 @@ class AbsenController extends Controller
 				$jadwal_absen[$session_absen[$j]]['jam_akhir'] = "null";
 				$jadwal_absen[$session_absen[$j]]['level'] = "null";
 				$jadwal_absen[$session_absen[$j]]['status'] = "null";
-				$jadwal_absen[$session_absen[$j]]['keterangan'] = "";
+				$jadwal_absen[$session_absen[$j]]['keterangan'] = "malam";
 				$jadwal_absen[$session_absen[$j]]["is_absen"] = "Tidak";
-				$jadwal_absen[$session_absen[$j]]['waktu_absen'] = "Tidak Absen";
+				$jadwal_absen[$session_absen[$j]]['waktu_absen'] = "belum_absen";
 			}
 		}		
 		return $jadwal_absen;		
@@ -198,10 +198,13 @@ class AbsenController extends Controller
 				$jadwal_absen = $this->jadwal_absen_subuh($waktu, $jumat, $current_date, $id_login);
 			}
 
-			$query_history = DB::table('absens')->select(DB::raw('day(tanggal) as tanggal'), DB::raw('count(id) as absen'))->where(DB::raw('month(tanggal)'), $month)->where(DB::raw('year(tanggal)'), $year)->groupBy('tanggal')->get();
+			$query_history = DB::table('absens')->select(DB::raw('day(tanggal) as tanggal'), 'tanggal as tanggal_full', DB::raw('count(id) as absen'))->where(DB::raw('month(tanggal)'), $month)->where(DB::raw('year(tanggal)'), $year)->groupBy('tanggal')->get();
 			$history = array();
 			foreach ($query_history as $row){
-				$history[$row->tanggal] = $row->absen;
+				$history[$row->tanggal]['absen'] = $row->absen;
+				$history[$row->tanggal]['tanggal_full'] = $row->tanggal_full;
+				$history[$row->tanggal]["Pagi"] = DB::table('absens')->select('status', 'waktu')->where('tanggal', $row->tanggal_full)->where('status_absen', 'Pagi')->first();
+				$history[$row->tanggal]["Sore"] = DB::table('absens')->select('status', 'waktu')->where('tanggal', $row->tanggal_full)->where('status_absen', 'Sore')->first();
 			}
 			return response()->json([
 				'message' => 'Berhasil',
@@ -306,7 +309,23 @@ class AbsenController extends Controller
 
 	}
 
+	public function update_foto(Request $request){
+		$db = Absen::where('id', $request->id_absen)->first();
+		if ($db){
+			$db->foto = $request->foto_absen;
+			$db->save();
+
+		}
+		return response()->json([
+			'message' => "Data berhasil",
+			'status' => 200,
+			// 'data' => $request->id_absen
+		],200);			
+
+	}
+
 	public function verifikasi_kode(Request $request){
+		$id = "";
 		$tanggal = date('dmY');
 		$waktu = date('H:i');
 		$user = $request->user();
@@ -356,20 +375,25 @@ class AbsenController extends Controller
 					$db->waktu = $waktu;
 					$db->status = $status_kehadiran;
 					$db->status_absen = $status;	
-					$db->save();																			
+					$db->save();	
+
 				}
 			}
+			$id = DB::table('absens')->select('id')->orderBy('id', 'desc')->first()->id;						
 			$echonya = "cocok";
 		}
 		else {
 			$echonya = "tidak_cocok";			
 		}
+		$data = array();
+		$data['code'] = $echonya;
+		$data['id'] = $id;
 
 
 		return response()->json([
 			'message' => "Data berhasil",
 			'status' => 200,
-			'code' => $echonya,
+			'data' => $data
 		],200);
 	}
 
