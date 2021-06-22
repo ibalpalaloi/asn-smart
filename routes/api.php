@@ -33,6 +33,8 @@ Route::get('/tugas_surat_tugas', [SuratTugasController::class, 'tugas_surat_tuga
 Route::get('/tambah_tugas_surat_tugas', [SuratTugasController::class, 'tambah_tugas_surat_tugas']);
 Route::get('/hapus_tugas_surat_tugas', [SuratTugasController::class, 'hapus_tugas_surat_tugas']);
 Route::get('/ubah_tugas_surat_tugas', [SuratTugasController::class, 'ubah_tugas_surat_tugas']);
+// 
+Route::get('/get_asn/{id}', [GetController::class, 'get_asn'])->name('get_asn');
 	
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
