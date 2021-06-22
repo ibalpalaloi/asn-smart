@@ -12,6 +12,6 @@ class Jabatan_tugas extends Model
     public $incrementing = false;
 
     public function jabatan(){
-        return $this->belongsTo(Jabatan::class, 'id_jabatan');
+        return $this->belongsTo(Jabatan::class);
     }
 }
