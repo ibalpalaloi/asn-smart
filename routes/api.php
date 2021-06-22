@@ -38,6 +38,7 @@ Route::get('/ubah_tugas_surat_tugas', [SuratTugasController::class, 'ubah_tugas_
 // 
 Route::get('/get_asn/{id}', [GetController::class, 'get_asn'])->name('get_asn');
 Route::get('/surat_tugas/{id}/asn_bertugas', [SuratTugasController::class, 'asn_bertugas'])->name('asn_bertugas');
+Route::post('/post_asn_bertugas', [SuratTugasController::class, 'post_asn_bertugas'])->name('pos_asn_bertugas');
 	
 
 Route::group(['middleware' => 'auth:sanctum'], function(){

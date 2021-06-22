@@ -35,7 +35,7 @@
 
       <div class="card-tools">
         <div class="input-group input-group-sm" style="width: 150px;">
-          <a href="/tambah_asn" type="button" class="btn btn-primary">Tambah ASN</a>
+          <a href="<?=url('/')?>/tambah_asn" type="button" class="btn btn-primary">Tambah ASN</a>
         </div>
       </div>
     </div>

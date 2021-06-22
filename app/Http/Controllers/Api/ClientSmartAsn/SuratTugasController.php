@@ -113,5 +113,20 @@ class SuratTugasController extends Controller
 			'status' => 200,
 			'asn' => $data_asn
 		], 200);
+		
+	}
+
+	public function post_asn_bertugas(Request $request){
+		$tugas_asn = new Tugas_asn;
+		$tugas_asn->id = $this->autocode('TA-');
+		$tugas_asn->asn_id = $request->id_asn;
+		$tugas_asn->surat_id = $request->id_surat;
+		$tugas_asn->save();
+
+		return response()->json([
+			'message' => "Behasil",
+			'status' => 200,
+		], 200);
+
 	}
 }

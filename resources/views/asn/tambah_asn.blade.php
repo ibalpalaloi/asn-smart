@@ -27,7 +27,7 @@
   </div>
   <!-- /.card-header -->
   <div class="card-body">
-    <form action="/post_tambah_asn" method="POST">
+    <form action="<?=url('/')?>/post_tambah_asn" method="POST">
       {{ csrf_field() }}
     <div class="row">
         <div class="col-md-6">
@@ -145,7 +145,7 @@
           text: 'Memuat.......'
         }));
     $.ajax({
-      url: "/get_sub_bidang/"+id_bidang,
+      url: "<?=url('/')?>/get_sub_bidang/"+id_bidang,
       type: "GET",
       success: function(data){
         var sub_bidang = data.sub_bidang;
@@ -176,7 +176,7 @@
         }));
 
     $.ajax({
-      url: "get_jabatan_sub_bidang/"+id_sub_bidang,
+      url: "<?=url('/')?>/get_jabatan_sub_bidang/"+id_sub_bidang,
       type: "GET",
       success: function(data){
         console.log(data.data_jabatan);
