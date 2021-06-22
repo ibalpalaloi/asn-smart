@@ -15,8 +15,6 @@ class JabatanController extends Controller
 	public function index(){
 		// $jabatan = DB::table('jabatan')->select('jabatan.id', 'jabatan.nama', 'jabatan.ikhtisar', DB::raw('count(jabatan_tugas.id) as tugas_jabatan'))->leftJoin('jabatan_tugas', 'jabatan_tugas.id_jabatan', '=', 'jabatan.id')->groupBy('jabatan.id', 'jabatan.nama', 'ikhtisar')->get();
 		$jabatan = Jabatan::all();
-		// dd($jabatan[1]->jabatan_tugas);
-    	    	// dd($jabatan);
 		return view('jabatan/index', compact('jabatan'));
 	}
 

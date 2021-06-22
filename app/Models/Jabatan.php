@@ -9,6 +9,7 @@ class Jabatan extends Model
 {
     use HasFactory;
     protected $table = "jabatan";
+    public $incrementing = false;
 
     public function jabatan_tugas(){
         return $this->hasMany(Jabatan_tugas::class);
