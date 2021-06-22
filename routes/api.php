@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\ClientSmartAsn\AbsenController;
 use App\Http\Controllers\Api\ClientSmartAsn\OPDController;
 use App\Http\Controllers\Api\ClientSmartAsn\SuratTugasController;
 use App\Http\Controllers\Api\ClientSmartAsn\AsnController;
+use App\Http\Controllers\Api\ClientSmartAsn\GetController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,6 +35,8 @@ Route::get('/tugas_surat_tugas', [SuratTugasController::class, 'tugas_surat_tuga
 Route::get('/tambah_tugas_surat_tugas', [SuratTugasController::class, 'tambah_tugas_surat_tugas']);
 Route::get('/hapus_tugas_surat_tugas', [SuratTugasController::class, 'hapus_tugas_surat_tugas']);
 Route::get('/ubah_tugas_surat_tugas', [SuratTugasController::class, 'ubah_tugas_surat_tugas']);
+// 
+Route::get('/surat_tugas/{id}/asn_bertugas', [SuratTugasController::class, 'asn_bertugas'])->name('asn_bertugas');
 	
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
