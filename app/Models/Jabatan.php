@@ -11,7 +11,7 @@ class Jabatan extends Model
     protected $table = "jabatan";
 
     public function jabatan_tugas(){
-        return $this->hasMany(Jabatan_tugas::class, 'id_jabatan');
+        return $this->hasMany(Jabatan_tugas::class);
     }
 }
 

@@ -48,17 +48,18 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/post_tambah_asn', [Admin_Asn_Controller::class, 'post_tambah_asn'])->name('post_tambah_asn');
 
     // Struktur
-    Route::post('bidang/select_bidang', [Admin_Struktur_Opd_Controller::class, 'select_bidang']);
-    Route::get('bidang', [Admin_Struktur_Opd_Controller::class, 'bidang'])->name('struktur-bidang');
-  
-    Route::post('/post_tambah_sub_bidang', [Admin_Struktur_Opd_Controller::class, 'post_tambah_sub_bidang']);
-    Route::post('/post_ubah_bidang', [Admin_Struktur_Opd_Controller::class, 'post_ubah_bidang']);
-    Route::post('/post_ubah_sub_bidang', [Admin_Struktur_Opd_Controller::class, 'post_ubah_sub_bidang']);
-    Route::get('/hapus_sub_bidang/{id}', [Admin_Struktur_Opd_Controller::class, 'hapus_sub_bidang'])->name('hapus_sub_bidang');
-    Route::get('/hapus_bidang/{id}', [Admin_Struktur_Opd_Controller::class, 'hapus_bidang'])->name('hapus_bidang');
-    Route::post('/post_tambah_bidang/{id}', [Admin_Struktur_Opd_Controller::class, 'tambah_bidang']);
+    // Route::post('bidang/select_bidang', [Admin_Struktur_Opd_Controller::class, 'select_bidang']);
+    Route::get('struktur', [Admin_Struktur_Opd_Controller::class, 'bidang'])->name('struktur-bidang');
 
-    // Route::get('/')
+    // Sturktur - Bidang
+    Route::post('struktur/post-delete-bidang', [Admin_Struktur_Opd_Controller::class, 'hapus_bidang']);
+    Route::post('struktur/post-ubah-bidang', [Admin_Struktur_Opd_Controller::class, 'ubah_bidang']);
+    Route::post('struktur/post-tambah-bidang', [Admin_Struktur_Opd_Controller::class, 'tambah_bidang']);
+
+    // Sturktur - Sub Bidang
+    Route::post('struktur/post-delete-sub-bidang', [Admin_Struktur_Opd_Controller::class, 'hapus_sub_bidang']);
+    Route::post('struktur/post-ubah-sub-bidang', [Admin_Struktur_Opd_Controller::class, 'ubah_sub_bidang']);
+    Route::post('struktur/post-tambah-sub-bidang', [Admin_Struktur_Opd_Controller::class, 'tambah_sub_bidang']);
 
     // jabatan opd
     Route::get('/daftar_jabatan_opd', [Jabatan_Opd_Controller::class, 'daftar_jabatan_opd'])->name('daftar_jabatan_opd');
@@ -67,16 +68,20 @@ Route::group(['middleware' => 'auth'], function(){
     // jabatan tugas
     Route::post('/jabatan/{id}/tugas/store', [Jabatan_Tugas_Controller::class, 'store']);
     Route::get('/jabatan/{id}/tugas', [Jabatan_Tugas_Controller::class, 'index']);
+
     Route::get('/get_uraian/{id}', [Jabatan_Tugas_Controller::class, 'get_uraian'])->name('get_uraian_tugas');
     Route::post('/ubah_uraian', [Jabatan_Tugas_Controller::class, 'ubah_uraian'])->name('ubah_uraian');
     Route::get('/hapus_uraian/{id}', [Jabatan_Tugas_Controller::class, 'hapus_uraian'])->name('hapus_uraian');
 
     // jabatan 
+    Route::post('/jabatan/delete', [JabatanController::class, 'delete']);
+    Route::post('/jabatan/update', [JabatanController::class, 'update']);
     Route::post('/jabatan/store', [JabatanController::class, 'store']);
     Route::get('/jabatan', [JabatanController::class, 'index']);
+
+
     Route::post('/post_opd_jabatan', [Jabatan_Opd_Controller::class, 'post_opd_jabatan']);
     Route::get('/jabatan/{id}', [JabatanController::class, 'get_jabatan']);
-    Route::post('/ubah_jabatan', [JabatanController::class, 'ubah_jabatan'])->name('ubah_jabatan');
     Route::get('/hapus_jabatan/{id}', [JabatanController::class, 'hapus_jabatan'])->name('hapus_jabatan');
 
     // Get

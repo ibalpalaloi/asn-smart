@@ -243,31 +243,13 @@
               </li>
             </ul>
           </li>
-
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          <li class="nav-item">
+            <a href="<?=url('/')?>/struktur" class="@if (Request::segment(1) == 'struktur') active @endif nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Struktur 
-                <i class="right fas fa-angle-left"></i>
+                Struktur
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?=url('/')?>/bidang" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Bidang</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?=url('/')?>/sub_bidang" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Sub Bidang</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -315,6 +297,25 @@
     <!-- /.content-header -->
 
     {{-- modal --}}
+     @if(Session::get('kode-notif'))
+     <div class="modal fade" id="modal-notif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            {{ csrf_field() }}
+            <div style="text-align: center;">
+              <i class="" id="icon" style="font-size: 5em;"></i>
+              <h4 style="margin-top: 0.5em;" id="header"></h4>
+              <div style="margin-top: 0.5em;" id="pesan-error-notif"></div>
+            </div>  
+          </div>
+          <div class="modal-footer" id="modal-footer-notif" data-dismiss="modal" style="color: white; display: flex; justify-content: center;">
+            Tutup
+          </div>
+        </div>
+      </div>
+    </div>
+    @endif
           @yield('modal')
     {{-- end modal --}}
 
@@ -377,6 +378,19 @@
 <script src="<?=url('/')?>/public/AdminLTE/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?=url('/')?>/public/AdminLTE/dist/js/demo.js"></script>
+<script type="text/javascript">
+  @if(Session::get('kode-notif'))
+  $("#pesan-error-notif").html("{{Session::get('message')}}");
+  $("#header").html("{{Session::get('header')}}");
+  $("#icon").addClass("{{Session::get('icon')}}");
+  $("#header").css("color", "{{Session::get('color')}}");
+  $("#icon").css("color", "{{Session::get('color')}}");
+  $('#modal-footer-notif').css("background", "{{Session::get('color')}}");
+  $('#modal-notif').modal('show');    
+  @endif
+  
+</script>
 @yield('footer')
+
 </body>
 </html>
