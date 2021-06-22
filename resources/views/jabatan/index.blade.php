@@ -10,86 +10,91 @@
 @section('modal')
 
 {{-- modal tambah admin --}}
-
+<!-- Tambah Bidang -->
 <div class="modal fade" id="modal_tambah_admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">TAMBAH ADMIN</h5>
+        <h5 class="modal-title" id="exampleModalLabel">TAMBAH BIDANG</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/jabatan/store" method="post">
+      <form action="<?=url('/')?>/jabatan/store" method="post">
         <div class="modal-body">
           {{ csrf_field() }}
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Nama</label>
-            <div class="col-sm-10">
-              <input name="nama" type="text" class="form-control" id="inputEmail3" placeholder="Nama" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Ikhtisar</label>
-            <div class="col-sm-10">
-              <textarea name="ikhtisar" type="text" class="form-control" id="inputEmail3" placeholder="Nama" required></textarea>
-            </div>
-          </div>
-
+          <div class="form-group">
+            <label>Nama</label>
+            <input name="nama" type="text" class="form-control" id="inputEmail3" placeholder="Nama" required>
+          </div>    
+          <div class="form-group">
+            <label>Ikhtisar</label>
+            <textarea name="ikhtisar" type="text" class="form-control" required placeholder="" rows="4"></textarea>
+          </div>    
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
       </form>
-      
+
     </div>
   </div>
 </div>
-
-{{-- end modal tambah admin --}}
-
-{{-- modal ubah jabatan --}}
-
+<!-- Modal ubah jabatan -->
 <div class="modal fade" id="modal_ubah_jabatan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">UBAH ADMIN</h5>
+        <h5 class="modal-title" id="exampleModalLabel">TAMBAH BIDANG</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/ubah_jabatan" method="post">
+      <form action="<?=url('/')?>/jabatan/update" method="post">
         <div class="modal-body">
           {{ csrf_field() }}
-          <input type="text" name="id_jabatan" id="id_jabatan" hidden>
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Nama</label>
-            <div class="col-sm-10">
-              <input name="nama" type="text" class="form-control" id="nama_jabatan" placeholder="Nama" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Ikhtisar</label>
-            <div class="col-sm-10">
-              <textarea name="ikhtisar" type="text" class="form-control" id="ikhtisar_jabatan" placeholder="Nama" required></textarea>
-            </div>
-          </div>
-
+          <div class="form-group">
+            <label>Nama</label>
+            <input type="text" name="id_jabatan" id="ubah_id_jabatan" hidden>
+            <input name="nama" type="text" class="form-control" id="ubah_nama_jabatan" placeholder="Nama" required>
+          </div>    
+          <div class="form-group">
+            <label>Ikhtisar</label>
+            <textarea name="ikhtisar" type="text" class="form-control" id="ubah_ikhtisar_jabatan" placeholder="Nama" required></textarea>
+          </div>    
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
       </form>
-      
+
     </div>
   </div>
 </div>
-
-{{-- end modal ubah jabatan --}}
-
+<!-- Modal hapus jabatan -->
+<div class="modal fade" id="modal_hapus_jabatan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <form action="<?=url('/')?>/jabatan/delete" method="post">
+        <div class="modal-body">
+          {{ csrf_field() }}
+          <div style="text-align: center;">
+            <input type="text" name="id" id="hapus_id_jabatan" hidden>
+            <i class="fa fa-trash" style="font-size: 5em; color: #dc3545;"></i>
+            <h4 style="margin-top: 0.5em;">Apakah anda yakin ingin menghapus data?</h4>
+            <div style="margin-top: 0.5em;"></div>
+          </div>  
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary">Hapus</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" style=" background: #dc3545; border: 1px solid #dc3545;">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('content')
@@ -99,7 +104,7 @@
 
     <div class="card-tools">
       <div class="input-group input-group-sm" style="width: 150px;">
-        <button type="button" data-toggle="modal" data-target="#modal_tambah_admin">Tambah Jabatan</button>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_tambah_admin">Tambah Jabatan</button>
       </div>
     </div>
   </div>
@@ -122,9 +127,9 @@
           <td>{{$data->ikhtisar}}</td>
           <td>
             <a href="/jabatan/{{$data->id}}/tugas" class="btn btn-primary">
-              {{$data->tugas_jabatan}} Tugas
+              {{$data->jabatan_tugas->count()}} Tugas
             </a>
-            <button onclick="modal_ubah_jabatan('{{$data->id}}')" class="btn btn-warning">Ubah</button>
+            <button onclick="ubah_jabatan('{{$data->id}}', '{{$data->nama}}', '{{$data->ikhtisar}}')" class="btn btn-warning">Ubah</button>
             <button onclick="hapus_jabatan('{{$data->id}}')" class="btn btn-danger">Hapus</button>
           </td>
         </tr>
@@ -163,34 +168,29 @@
 </script>
 <script>
   function hapus_jabatan(id_jabatan){
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-    .then((willDelete) => {
-      if (willDelete) {
-        window.location.href = "/hapus_jabatan/"+id_jabatan;
-      } else {
-        swal("Your imaginary file is safe!");
-      }
-    });
+    $('#hapus_id_jabatan').val(id_jabatan);
+    $('#modal_hapus_jabatan').modal('show');
+    // swal({
+    //   title: "Are you sure?",
+    //   text: "Once deleted, you will not be able to recover this imaginary file!",
+    //   icon: "warning",
+    //   buttons: true,
+    //   dangerMode: true,
+    // })
+    // .then((willDelete) => {
+    //   if (willDelete) {
+    //     window.location.href = "/hapus_jabatan/"+id_jabatan;
+    //   } else {
+    //     swal("Your imaginary file is safe!");
+    //   }
+    // });
   }
 
-  function modal_ubah_jabatan(id_jabatan){
-    $.ajax({
-      type: 'GET',
-      url: '/jabatan/'+id_jabatan,
-      success:function(data){
-        console.log(data.jabatan);
-        $('#id_jabatan').val(id_jabatan);
-        $('#nama_jabatan').val(data.jabatan['nama']);
-        $('#ikhtisar_jabatan').val(data.jabatan['ikhtisar']);
-        $('#modal_ubah_jabatan').modal('show');
-      }
-    })
+  function ubah_jabatan(id_jabatan, nama, ikhtisar){
+    $('#ubah_id_jabatan').val(id_jabatan);
+    $('#ubah_nama_jabatan').val(nama);
+    $('#ubah_ikhtisar_jabatan').val(ikhtisar);
+    $('#modal_ubah_jabatan').modal('show');
   }
 </script>
 

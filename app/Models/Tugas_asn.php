@@ -9,5 +9,9 @@ class Tugas_asn extends Model
 {
     use HasFactory;
     protected $table = "tugas_asn";
+    public $incrementing = false;
 
+    public function asn(){
+        return $this->belongsTo(Asn::class);
+    }
 }

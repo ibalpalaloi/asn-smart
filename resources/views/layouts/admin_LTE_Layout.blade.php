@@ -8,23 +8,23 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?=url('/')?>/AdminLTE/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?=url('/')?>/public/AdminLTE/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="<?=url('/')?>/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="<?=url('/')?>/public/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="<?=url('/')?>/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="<?=url('/')?>/public/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="<?=url('/')?>/AdminLTE/plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="<?=url('/')?>/public/AdminLTE/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?=url('/')?>/AdminLTE/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?=url('/')?>/public/AdminLTE/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="<?=url('/')?>/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="<?=url('/')?>/public/AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="<?=url('/')?>/AdminLTE/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="<?=url('/')?>/public/AdminLTE/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
-  <link rel="stylesheet" href="<?=url('/')?>/AdminLTE/plugins/summernote/summernote-bs4.min.css">
+  <link rel="stylesheet" href="<?=url('/')?>/public/AdminLTE/plugins/summernote/summernote-bs4.min.css">
 
   @yield('header')
 </head>
@@ -70,7 +70,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="<?=url('/')?>/AdminLTE/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="<?=url('/')?>/public/AdminLTE/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -86,7 +86,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="<?=url('/')?>/AdminLTE/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="<?=url('/')?>/public/AdminLTE/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -102,7 +102,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="<?=url('/')?>/AdminLTE/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="<?=url('/')?>/public/AdminLTE/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -158,7 +158,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="<?=url('/')?>/AdminLTE/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="<?=url('/')?>/public/AdminLTE/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Smart ASN</span>
     </a>
 
@@ -167,7 +167,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?=url('/')?>/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="<?=url('/')?>/public/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           @if (Auth()->user()->roles == "admin")
@@ -203,7 +203,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="data_admin" class="nav-link">
+                <a href="<?=url('/')?>/data_admin" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Admin</p>
                 </a>
@@ -211,7 +211,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/tambah_user" class="nav-link">
+                <a href="<?=url('/')?>/tambah_user" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah User</p>
                 </a>
@@ -219,7 +219,7 @@
             </ul>
           </li>\
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Data ASN
@@ -228,7 +228,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="data_asn" class="nav-link">
+                <a href="<?=url('/')?>/data_asn" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data ASN</p>
                 </a>
@@ -236,38 +236,20 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/tambah_data_asn" class="nav-link">
+                <a href="<?=url('/')?>/tambah_data_asn" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Data ASN</p>
                 </a>
               </li>
             </ul>
           </li>
-
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          <li class="nav-item">
+            <a href="<?=url('/')?>/struktur" class="@if (Request::segment(1) == 'struktur') active @endif nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Struktur 
-                <i class="right fas fa-angle-left"></i>
+                Struktur
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="bidang" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Bidang</p>
-                </a>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/sub_bidang" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Sub Bidang</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
@@ -279,13 +261,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/daftar_jabatan_opd" class="nav-link">
+                <a href="<?=url('/')?>/daftar_jabatan_opd" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Daftar jabatan OPD</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/jabatan" class="nav-link">
+                <a href="<?=url('/')?>/jabatan" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Daftar jabatan</p>
                 </a>
@@ -315,6 +297,25 @@
     <!-- /.content-header -->
 
     {{-- modal --}}
+     @if(Session::get('kode-notif'))
+     <div class="modal fade" id="modal-notif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            {{ csrf_field() }}
+            <div style="text-align: center;">
+              <i class="" id="icon" style="font-size: 5em;"></i>
+              <h4 style="margin-top: 0.5em;" id="header"></h4>
+              <div style="margin-top: 0.5em;" id="pesan-error-notif"></div>
+            </div>  
+          </div>
+          <div class="modal-footer" id="modal-footer-notif" data-dismiss="modal" style="color: white; display: flex; justify-content: center;">
+            Tutup
+          </div>
+        </div>
+      </div>
+    </div>
+    @endif
           @yield('modal')
     {{-- end modal --}}
 
@@ -344,39 +345,52 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="<?=url('/')?>/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="<?=url('/')?>/AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="<?=url('/')?>/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
-<script src="<?=url('/')?>/AdminLTE/plugins/chart.js/Chart.min.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
-<script src="<?=url('/')?>/AdminLTE/plugins/sparklines/sparkline.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
-<script src="<?=url('/')?>/AdminLTE/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="<?=url('/')?>/AdminLTE/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <!-- jQuery Knob Chart -->
-<script src="<?=url('/')?>/AdminLTE/plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
-<script src="<?=url('/')?>/AdminLTE/plugins/moment/moment.min.js"></script>
-<script src="<?=url('/')?>/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/plugins/moment/moment.min.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="<?=url('/')?>/AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Summernote -->
-<script src="<?=url('/')?>/AdminLTE/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="<?=url('/')?>/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<?=url('/')?>/AdminLTE/dist/js/adminlte.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?=url('/')?>/AdminLTE/dist/js/pages/dashboard.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?=url('/')?>/AdminLTE/dist/js/demo.js"></script>
+<script src="<?=url('/')?>/public/AdminLTE/dist/js/demo.js"></script>
+<script type="text/javascript">
+  @if(Session::get('kode-notif'))
+  $("#pesan-error-notif").html("{{Session::get('message')}}");
+  $("#header").html("{{Session::get('header')}}");
+  $("#icon").addClass("{{Session::get('icon')}}");
+  $("#header").css("color", "{{Session::get('color')}}");
+  $("#icon").css("color", "{{Session::get('color')}}");
+  $('#modal-footer-notif').css("background", "{{Session::get('color')}}");
+  $('#modal-notif').modal('show');    
+  @endif
+  
+</script>
 @yield('footer')
+
 </body>
 </html>

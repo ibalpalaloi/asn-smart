@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\ClientSmartAsn\AbsenController;
 use App\Http\Controllers\Api\ClientSmartAsn\OPDController;
 use App\Http\Controllers\Api\ClientSmartAsn\SuratTugasController;
 use App\Http\Controllers\Api\ClientSmartAsn\AsnController;
+use App\Http\Controllers\Api\ClientSmartAsn\GetController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,29 +30,44 @@ Route::get('/data-opd', [OPDController::class, 'data_opd']);
 
 Route::post('/surat-tugas/store', [SuratTugasController::class, 'store']);
 Route::get('/surat-tugas', [SuratTugasController::class, 'index']);
+
 Route::get('/tugas_surat_tugas', [SuratTugasController::class, 'tugas_surat_tugas']);
 Route::get('/tambah_tugas_surat_tugas', [SuratTugasController::class, 'tambah_tugas_surat_tugas']);
 Route::get('/hapus_tugas_surat_tugas', [SuratTugasController::class, 'hapus_tugas_surat_tugas']);
 Route::get('/ubah_tugas_surat_tugas', [SuratTugasController::class, 'ubah_tugas_surat_tugas']);
 // 
+<<<<<<< HEAD
 Route::get('/get_asn/{id}', [GetController::class, 'get_asn'])->name('get_asn');
+=======
+Route::get('/surat_tugas/{id}/asn_bertugas', [SuratTugasController::class, 'asn_bertugas'])->name('asn_bertugas');
+>>>>>>> main
 	
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
+	// middleware cek biodata
+	Route::group(['middleware' => "cekbiodata"], function(){
+		// jabatan
+		Route::post('/jabatan/store/', [JabatanAsnController::class, 'store']);
+		// Uraian Tugas
+		Route::post('/uraian-tugas/delete', [UraianTugasController::class, 'delete']);
+		Route::post('/uraian-tugas/update', [UraianTugasController::class, 'update']);
+		Route::post('/uraian-tugas/store', [UraianTugasController::class, 'store']);
+		Route::get('/uraian-tugas/{bulan}/{tahun}', [UraianTugasController::class, 'filter_tahun']);
+		Route::get('/uraian-tugas/{tanggal}', [UraianTugasController::class, 'detail']);
+		Route::get('/uraian-tugas', [UraianTugasController::class, 'index']);
+		// Absen
+		Route::get('/absen', [AbsenController::class, 'jadwal_absen']);
+	});
+
+
 	// Absen
 	Route::post('/generate_absen', [AbsenController::class, 'generate_absen']);
+	Route::post('/absen/update-foto', [AbsenController::class, 'update_foto']);
 	Route::post('/absen/check-absen', [AbsenController::class, 'check_absen']);
 	Route::post('/absen/verifikasi-kode', [AbsenController::class, 'verifikasi_kode']);
-	Route::get('/absen', [AbsenController::class, 'jadwal_absen']);
-	// Uraian Tugas
-	Route::post('/uraian-tugas/store', [UraianTugasController::class, 'store']);
-	Route::get('/uraian-tugas/{bulan}/{tahun}', [UraianTugasController::class, 'filter_tahun']);
-	Route::get('/uraian-tugas/{tanggal}', [UraianTugasController::class, 'detail']);
-	Route::get('/uraian-tugas', [UraianTugasController::class, 'index']);
-
+	
 	//Jabatan
 	Route::post('/jabatan/update/', [JabatanAsnController::class, 'update']);
-	Route::post('/jabatan/store/', [JabatanAsnController::class, 'store']);
 	Route::post('/jabatan/select_sub_bidang/', [JabatanAsnController::class, 'select_sub_bidang']);
 	Route::post('/jabatan/select_bidang/', [JabatanAsnController::class, 'select_bidang']);
 

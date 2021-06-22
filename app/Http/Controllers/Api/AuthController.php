@@ -25,7 +25,7 @@ class AuthController extends Controller
 			'message' => 'success',
 			'status' => 200,
 			'user' => $user,
-			'nama' => $user->name,
+			'nama' => $user->name,	
 			'token' => $token,
 		],200);
 	}
@@ -33,6 +33,12 @@ class AuthController extends Controller
 	public function logout(Request $request){
 		$user = $request->user();
 		$user->currentAccessToken()->delete();
+
+		// $user = $request->user();
+		// id user 106
+		// $user->currentAccessToken()->id;
+		// Auth::user()->tokens()->where('id', Auth::user()->currentAccessToken()->id)->delete();
+		// $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
 		return response()->json([
 			'message' => "Berhasil logout",
 			'status' => 200,
